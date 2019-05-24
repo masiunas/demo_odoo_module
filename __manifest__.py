@@ -10,5 +10,6 @@
     'installable': True,
     'data': [
         'views/library_menu.xml',
+        'security/library_security.xml',
     ],
 }
