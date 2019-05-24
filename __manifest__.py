@@ -8,4 +8,7 @@
     'depends': ['base'],
     'application': True,
     'installable': True,
+    'data': [
+        'views/library_menu.xml',
+    ],
 }
