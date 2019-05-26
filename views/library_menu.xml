@@ -1,6 +1,6 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <odoo>
-    <record id="module_library_category" model="ir.module.category">
-        <field name="name">Library</field>
-    </record>
+
+    <menuitem id="menu_library" name="Library"/>
+
 </odoo>
