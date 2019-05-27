@@ -9,7 +9,8 @@
     'application': True,
     'installable': True,
     'data': [
-        'views/library_menu.xml',
         'security/library_security.xml',
+        'security/ir.model.access.csv',
+        'views/library_menu.xml',
     ],
 }
