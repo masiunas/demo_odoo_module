@@ -18,5 +18,5 @@ class TestBook(TransactionCase):
         self.assertEqual(self.book_ode.active, True)
 
     def test_check_isbn(self):
-        "Check valid ISBN"
+        """Check valid ISBN"""
         self.assertTrue(self.book_ode._check_isbn)
