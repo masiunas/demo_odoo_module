@@ -1,4 +1,4 @@
-from odoo
+from odoo import models, fields
 
 
 class Book(models.Model):
