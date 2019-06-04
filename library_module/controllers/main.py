@@ -7,4 +7,4 @@ class Books(http.Controller):
     def list(self, **kwargs):
         Book = http.request.env['library.book']
         books = Book.search([])
-        return http.request.render('demo_odoo_module.book_list_template', {'books': books})
+        return http.request.render('library_module.book_list_template', {'books': books})

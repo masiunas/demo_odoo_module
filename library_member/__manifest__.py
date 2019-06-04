@@ -3,7 +3,7 @@
     'name': 'Library Members',
     'description': 'Manage people who will be able to borrow books.',
     'author': 'Evgenii _Masiunas',
-    'depends': ['library_module'],
+    'depends': ['library_module', 'mail'],
     'data': [
         'views/book_view.xml',
         'security/ir.model.access.csv',
