@@ -18,11 +18,42 @@ class Book(models.Model):
             return digits[-1] == check
 
     _description = 'Book'
-    name = fields.Char('Title', required=True)
+    _order = 'name, date_published desc'
+
+    name = fields.Char(
+        'Title',
+        default=None,
+        index=True,
+        help='Book cover title.',
+        readonly=False,
+        required=True,
+        translate=False,
+    )
     isbn = fields.Char('ISBN')
     active = fields.Boolean('Active?', default=True)
-    date_published = fields.Date('Publication date', default=fields.Date.today)
     image = fields.Binary('Cover')
+    book_type = fields.Selection(
+        [('paper', 'Paperback'),
+         ('hard', 'Hardcover'),
+         ('electronic', 'Electronic'),
+         ('other', 'Other')],
+        'Type')
+    notes = fields.Text('Internal Notes')
+    descr = fields.Html('Description')
+
+    # Numeric fields:
+    copies = fields.Integer(default=1)
+    avg_rating = fields.Float('Average Rating', (3, 2))
+    price = fields.Monetary('Price', 'currency_id')
+    currency_id = fields.Many2one('res.currency')
+
+    # Date and time fields:
+    date_published = fields.Date('Publication date', default=fields.Date.today)
+    last_borrow_date = fields.Datetime(
+        'Last Borrowed On',
+        default=lambda self: fields.Datetime.now())
+
+    # Relational Fields
     publisher_id = fields.Many2one('res.partner', string='Publisher')
     author_ids = fields.Many2many('res.partner', string='Authors')
 
