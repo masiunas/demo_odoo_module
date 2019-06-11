@@ -71,6 +71,16 @@ class Book(models.Model):
         related='publisher_id.country_id',
     )
 
+    # SQL model constraints
+    _sql_constraints = [
+        ('library_book_name_date_uq',  # Constraint unique identifier
+         'UNIQUE (name, date_published)',  # Constraint SQL syntax
+         'Book title and publication date must be unique.'),  # Message
+        ('library_book_check_date',
+         'CHECK (date_published <= current_date)',
+         'Publication date must not be in the future.'),
+    ]
+
     @api.multi
     def button_check_isbn(self):
         for book in self:
