@@ -65,6 +65,12 @@ class Book(models.Model):
         search='_search_publisher_country',
     )
 
+    # Related fields
+    publisher_country_related = fields.Many2one(
+        'res.country', string='Publisher Country (related)',
+        related='publisher_id.country_id',
+    )
+
     @api.multi
     def button_check_isbn(self):
         for book in self:
