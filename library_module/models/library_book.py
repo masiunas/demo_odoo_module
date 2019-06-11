@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from odoo.exceptions import Warning
+from odoo.exceptions import ValidationError
 
 
 class Book(models.Model):
@@ -94,6 +95,12 @@ class Book(models.Model):
     def _compute_publisher_country(self):
         for book in self:
             book.publisher_country_id = book.publisher_id.country_id
+
+    @api.constrains('isbn')
+    def _constrain_isbn_valid(self):
+        for book in self:
+            if book.isbn and not book._check_isbn():
+                raise ValidationError('%s is an invalid ISBN' % book.isbn)
 
     def _inverse_publisher_country(self):
         for book in self:
